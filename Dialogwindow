@@ -1,0 +1,83 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+//Draw window
+
+class Dialog
+{
+public:
+	int answer;	//Stole this from main, cin >> answer; might not work correctly...
+	void DialogArray(int);
+};
+
+void Dialog::DialogArray(int Choice)
+{
+	//Options to choose from
+	answer = Choice;
+
+	//An Array would be more useful when it's called upon often, like in a battle system
+	string Dialogchoice[4];
+	Dialogchoice[0] = "Yes";
+	Dialogchoice[1] = "No";
+	Dialogchoice[2] = "Run away";
+	Dialogchoice[3] = "Lay down and accept your fate.";
+	cout << "\nChoose your answer:\n";
+
+	//Show the options to choose from
+	for (int d = 0; d <= 3; d++)
+	{
+		cout << (d + 1) << " " << Dialogchoice[d] << "\n";
+	}
+
+	//Input for option
+	cin >> answer;
+
+	//Changing answer value so it matches Dialogchoice and the switch function below
+	answer = answer - 1;
+
+	//Switch that displays
+	switch (answer)
+	{
+	case 0:
+		cout << "The Entity: \"Very well \"Bonk.\n";
+		break;
+	case 1:
+		cout << "The Entity: \"Pity...\" Bonk.\n";
+		break;
+	case 2:
+		cout << "As you run, you can hear 'The Entity' laugh.\n" << "You managed to get away, but nothing seems familiar, your best option seems to just keep running..." << endl;
+		cout << "Keep running...\n" << "running...\n" << "run...\n";
+		break;
+	case 3:
+		cout << "The Entity: Accept my blessings... Bonk.\n";
+		break;
+		//Fix Default:
+	default:
+		cout << "Wrong input, need to fix this." << endl;
+	}
+}
+
+
+int main()
+{
+	//Story bit
+	cout << "You encounter the unimaginable...";
+	cout << "\nThe Entity: \"Ready to accept your fate mortal?\"";
+	getchar(); //additional input carries over, for example if you type 54 and press enter, 4 carries over and selects option 4 from the dialog
+	cout << "\n";
+
+	Dialog Unimaginable;
+	Unimaginable.DialogArray(1);
+
+	//Checking value of answer
+	//cout << "\nYou chose " << answer << "\n";
+
+
+	//Relays the option you chose
+	//cout << Dialogchoice[answer] << "\n" << endl; //Exception thrown when input differs from 1-4
+	//Maybe change code to -> cout << "You chose " << Dialogchoice[answer] << "\n";
+
+	getchar();
+	return 0;
+}
